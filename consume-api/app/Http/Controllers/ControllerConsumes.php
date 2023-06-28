@@ -20,34 +20,8 @@ class ControllerConsumes extends Controller
 
         /* transforma a string em um objeto json */
         $objectData = json_decode($stringData);
-
-        ?>
-
-        <table>
-        <thead>
-            <th>id</th>
-            <th>name</th>
-            <th>age</th>
-            <th>email</th>
-        </thead>
-        <tbody>
-            <?php 
-            /* o objeto tem um atributo users, que é um array com 
-            outros objetos, que são os usuários */ 
-            foreach($objectData->users as $user) { 
-            ?>
-            <tr>
-                <td><?php echo $user->id ?></td> <!-- acessando o dado id do usuário -->
-                <td><?php echo $user->name ?></td>
-                <td><?php echo $user->age ?></td>
-                <td><?php echo $user->email ?></td>
-            </tr>
-            <?php }; ?>
-        </tbody>
-        </table>
-
-        <?php
         
-        //return view("stringData", ["stringData" => json_decode($stringData)]);
+        /* leva para a view "userList" em que está o código html */
+        return view("userList", ["data" => $objectData]);
     }
 }
