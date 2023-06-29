@@ -27,7 +27,7 @@
       </thead>
       
       <tbody>
-        @foreach($data->users as $user)
+        @foreach($data as $user)
           <tr>
             <td scope="row">{{ $user->id }}</td> <!-- acessando o dado id do usuário -->
             <td scope="row">{{ $user->name }}</td>
@@ -37,5 +37,7 @@
         @endforeach
       </tbody>
     </table>
+
+    <div> {{ $data->links() }} </div>
   </body>
 </html>

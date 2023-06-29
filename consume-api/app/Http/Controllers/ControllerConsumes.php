@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
+use App\Models\ConsumesAPI;
+use Illuminate\Support\Facades\DB;
+
+
 class ControllerConsumes extends Controller
 {
     public function getData() {
@@ -21,7 +25,18 @@ class ControllerConsumes extends Controller
         /* transforma a string em um objeto json */
         $objectData = json_decode($stringData);
 
+        DB::table('consumes_a_p_i_s')->truncate();
+
+        foreach ($objectData->users as $u) {
+            $consumesAPI = new ConsumesAPI();
+            $consumesAPI->id = $u->id;
+            $consumesAPI->name = $u->name;
+            $consumesAPI->age = $u->age;
+            $consumesAPI->email = $u->email;
+            $consumesAPI->save();
+        }
+
         /* leva para a view "userList" em que está o código html */
-        return view("userList", ["data" => $objectData]);
+        return view("userList", ["data" => DB::table('consumes_a_p_i_s')->simplePaginate(10)]);
     }
 }
