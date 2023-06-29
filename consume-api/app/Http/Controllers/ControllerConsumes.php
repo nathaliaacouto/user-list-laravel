@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class ControllerConsumes extends Controller
 {
-    function getData() {
+    public function getData() {
         /*cria um novo cliente guzzle, precisa da verificação em falso, se não, o laravel 
         não consegue acessar a url */
         $client = new \GuzzleHttp\Client(['verify' => false]);
@@ -20,7 +20,7 @@ class ControllerConsumes extends Controller
 
         /* transforma a string em um objeto json */
         $objectData = json_decode($stringData);
-        
+
         /* leva para a view "userList" em que está o código html */
         return view("userList", ["data" => $objectData]);
     }
