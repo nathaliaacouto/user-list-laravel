@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('consumes_a_p_i_s', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('age')->nullable(); //create collumn
+            $table->string('name')->nullable(); // cria a coluna 'name' na DB
+            $table->string('age')->nullable(); 
             $table->string('email')->nullable();
             $table->timestamps();
         });

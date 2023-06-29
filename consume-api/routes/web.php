@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// cria uma rota para a função getData, que está no controller 
 Route::get('/code', [\App\Http\Controllers\ControllerConsumes::class, 'getData']);
